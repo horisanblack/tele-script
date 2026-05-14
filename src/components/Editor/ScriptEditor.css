@@ -1,0 +1,11 @@
+.script-editor {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+}
+
+.script-editor-canvas {
+  flex: 1;
+  height: 100%;
+}

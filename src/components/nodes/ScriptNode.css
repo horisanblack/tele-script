@@ -1,0 +1,115 @@
+.script-node {
+  background: #fff;
+  border: 2px solid #6b7280;
+  border-radius: 10px;
+  min-width: 220px;
+  max-width: 280px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  font-family: 'Helvetica Neue', sans-serif;
+  transition: box-shadow 0.15s;
+}
+
+.script-node.selected {
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.4), 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.script-node-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-radius: 8px 8px 0 0;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.script-node-type-label {
+  letter-spacing: 0.05em;
+}
+
+.script-node-edit-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  opacity: 0.8;
+  line-height: 1;
+}
+
+.script-node-edit-btn:hover { opacity: 1; }
+
+.script-node-body {
+  padding: 10px 12px;
+}
+
+.script-node-title {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #1e293b;
+}
+
+.script-node-text {
+  font-size: 12px;
+  color: #475569;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.script-node-title-input {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 4px 6px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  box-sizing: border-box;
+}
+
+.script-node-text-input {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 4px 6px;
+  font-size: 12px;
+  resize: vertical;
+  box-sizing: border-box;
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+.script-node-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.btn-save {
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-save:hover { background: #2563eb; }
+
+.btn-cancel {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.btn-cancel:hover { background: #e2e8f0; }
