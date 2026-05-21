@@ -37,6 +37,29 @@ body {
   letter-spacing: 0.02em;
 }
 
+.app-script-select {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #f8fafc;
+  border-radius: 8px;
+  padding: 7px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.app-script-select:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.35);
+}
+
+.app-script-select option {
+  background: #1e293b;
+  color: #f8fafc;
+}
+
 .app-mode-tabs {
   display: flex;
   gap: 8px;

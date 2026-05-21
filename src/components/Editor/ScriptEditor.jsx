@@ -13,7 +13,6 @@ import '@xyflow/react/dist/style.css';
 
 import { nodeTypes } from '../nodes/nodeTypes';
 import NodePanel from './NodePanel';
-import { defaultNodes, defaultEdges } from '../../data/defaultScript';
 import './ScriptEditor.css';
 
 let nodeIdCounter = 100;
@@ -32,7 +31,7 @@ function snapshot(nodes, edges) {
   return { nodes: nodes.map((n) => ({ ...n })), edges: edges.map((e) => ({ ...e })) };
 }
 
-export default function ScriptEditor({ initialNodes, initialEdges, onPersist, onReset }) {
+export default function ScriptEditor({ initialNodes, initialEdges, scriptDefaultNodes, scriptDefaultEdges, onPersist, onReset }) {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const nodesRef = useRef(nodes);
@@ -189,9 +188,9 @@ export default function ScriptEditor({ initialNodes, initialEdges, onPersist, on
     if (!window.confirm('スクリプトをサンプルに戻しますか？現在の内容は削除されます。')) return;
     saveSnapshot();
     onReset();
-    setNodes(defaultNodes);
-    setEdges(defaultEdges);
-  }, [onReset, setNodes, setEdges, saveSnapshot]);
+    setNodes(scriptDefaultNodes);
+    setEdges(scriptDefaultEdges);
+  }, [onReset, setNodes, setEdges, saveSnapshot, scriptDefaultNodes, scriptDefaultEdges]);
 
   const onDragOver = useCallback((e) => {
     e.preventDefault();
