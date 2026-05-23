@@ -60,6 +60,26 @@
   overflow-wrap: anywhere;
 }
 
+.script-node-body.copy-mode,
+.script-node-body.copy-mode .script-node-title,
+.script-node-body.copy-mode .script-node-text {
+  cursor: text;
+  user-select: text !important;
+}
+
+.script-node-link {
+  color: #2563eb;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  overflow-wrap: anywhere;
+}
+
+.script-node-link:hover {
+  color: #1d4ed8;
+}
+
 .script-node-title-input {
   width: 100%;
   border: 1px solid #cbd5e1;

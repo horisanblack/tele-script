@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { renderTextWithLinks } from '../../utils/renderTextWithLinks';
 import BranchButton from './BranchButton';
 import './CallView.css';
 
@@ -79,7 +80,9 @@ export default function CallView({ nodes, edges }) {
       <div className="call-view-card" style={{ borderTopColor: color }}>
         <div className="call-view-type-badge" style={{ background: color }}>{typeLabel}</div>
         <div className="call-view-node-title">{currentNode.data.title}</div>
-        <div className="call-view-node-text">{currentNode.data.text}</div>
+        <div className="call-view-node-text">
+          {renderTextWithLinks(currentNode.data.text, { className: 'call-view-link' })}
+        </div>
       </div>
 
       {outgoing.length > 0 && (
@@ -87,7 +90,6 @@ export default function CallView({ nodes, edges }) {
           <div className="call-view-branches-label">相手の反応に合わせて選択</div>
           <div className="call-view-branches-list">
             {outgoing.map((edge) => {
-              const target = nodes.find((n) => n.id === edge.target);
               return (
                 <BranchButton
                   key={edge.id}

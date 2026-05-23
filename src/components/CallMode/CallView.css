@@ -106,6 +106,18 @@
   white-space: pre-wrap;
 }
 
+.call-view-link {
+  color: #2563eb;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.call-view-link:hover {
+  color: #1d4ed8;
+}
+
 .call-view-branches {
   width: 100%;
   max-width: 720px;

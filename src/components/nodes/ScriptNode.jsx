@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Handle, Position } from '@xyflow/react';
+import { renderTextWithLinks } from '../../utils/renderTextWithLinks';
 import './ScriptNode.css';
 
 const NODE_COLORS = {
@@ -20,6 +21,7 @@ export default function ScriptNode({ data, id, selected }) {
   const [editing, setEditing] = useState(false);
   const [title, setTitle] = useState(data.title);
   const [text, setText] = useState(data.text);
+  const [copyMode, setCopyMode] = useState(false);
   const titleRef = useRef(null);
 
   useEffect(() => {
@@ -43,11 +45,45 @@ export default function ScriptNode({ data, id, selected }) {
     if (editing && titleRef.current) titleRef.current.focus();
   }, [editing]);
 
+  useEffect(() => {
+    function syncCopyMode(e) {
+      setCopyMode(e.ctrlKey || e.metaKey || e.shiftKey);
+    }
+
+    function disableCopyMode() {
+      setCopyMode(false);
+    }
+
+    window.addEventListener('keydown', syncCopyMode);
+    window.addEventListener('keyup', syncCopyMode);
+    window.addEventListener('blur', disableCopyMode);
+    return () => {
+      window.removeEventListener('keydown', syncCopyMode);
+      window.removeEventListener('keyup', syncCopyMode);
+      window.removeEventListener('blur', disableCopyMode);
+    };
+  }, []);
+
+  function handleSelectablePointerDown(e) {
+    if (!(e.ctrlKey || e.metaKey || e.shiftKey)) return;
+    e.stopPropagation();
+  }
+
+  const linkProps = {
+    className: 'script-node-link nodrag nopan',
+    onClick: (e) => e.stopPropagation(),
+    onDoubleClick: (e) => e.stopPropagation(),
+    onPointerDown: (e) => e.stopPropagation(),
+  };
+
   return (
     <div
       className={`script-node ${selected ? 'selected' : ''}`}
       style={{ borderColor: color }}
-      onDoubleClick={() => setEditing(true)}
+      onDoubleClick={(e) => {
+        if (e.ctrlKey || e.metaKey || e.shiftKey) return;
+        setEditing(true);
+      }}
     >
       <Handle type="target" position={Position.Top} />
 
@@ -85,9 +121,14 @@ export default function ScriptNode({ data, id, selected }) {
           </div>
         </div>
       ) : (
-        <div className="script-node-body">
+        <div
+          className={`script-node-body ${copyMode ? 'copy-mode nodrag nopan' : ''}`}
+          onPointerDownCapture={handleSelectablePointerDown}
+        >
           <div className="script-node-title">{title}</div>
-          <div className="script-node-text">{text}</div>
+          <div className="script-node-text">
+            {renderTextWithLinks(text, linkProps)}
+          </div>
         </div>
       )}
 
